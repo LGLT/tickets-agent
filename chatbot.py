@@ -55,8 +55,35 @@ def get_response(intents_list, intents_json):
 
 print("GO! Bot is running!")
 
+def extract_message_data(message):
+    # Verificar si se solicita una categoría
+    if 'tag:' in message or 'tags:' in message or 'categoria:' in message or 'categorias:' in message or 'categoría:' in message or 'categorías:' in message or 'etiqueta:' in message or 'etiquetas:' in message:
+        # Obtener el índice de los dos puntos
+        two_dots = message.index(':')
+        # Obtener los tags separados por comas
+        tags = message[two_dots + 1:].strip().split(',')
+        # Eliminar espacios en blanco alrededor de cada tag
+        tags = [tag.strip().replace('?', '') for tag in tags]
+        return ('tags', tags)
+        
+    # Verificar si se solicita un estado
+    if 'estado:' in message or 'estados:' in message:
+        # Obtener el índice de los dos puntos
+        two_dots = message.index(':')
+        # Obtener los estados separados por comas
+        estados = message[two_dots + 1:].strip().split(',')
+        # Eliminar espacios en blanco alrededor de cada tag
+        estados = [estado.strip() for estado in tags]
+        return ('estados', estados)
+
+    # Si no se detecta ni una categoría ni un estado válido, retornar None
+    return None, None
+    
+
 while True:
-    message = input("")  # Leer el mensaje del usuario desde la entrada estándar
-    ints = predict_class(message.lower())  # Predecir la intención del mensaje en minúsculas
+    message = input("").lower()  # Leer el mensaje del usuario desde la entrada estándar
+    data = extract_message_data(message.strip())
+    print(data)
+    ints = predict_class(message)  # Predecir la intención del mensaje en minúsculas
     res = get_response(ints, intents)  # Obtener la respuesta correspondiente a la intención
     print(res)  # Imprimir la respuesta
