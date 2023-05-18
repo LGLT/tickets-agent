@@ -25,7 +25,7 @@
       },
       {"tag": "estado",
       "patterns": ["¿puedes darme todos los tickets que tengan el siguiente estado?", "¿cuales son los tickets con el estado?", "¿que tickets tienen el estado?"],
-      "responses": ["Los tickets el estado solicitado son los siguientes:"]
+      "responses": ["Los tickets con el estado solicitado son los siguientes:"]
       },
       {"tag": "actualización",
       "patterns": ["¿puedes agregar la etiqueta al ticket?", "¿puedes actualizar el estado del ticket a?", "¿puedes cambiar el estado del ticket a?"],
