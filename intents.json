@@ -1,0 +1,35 @@
+{
+    "intents": [
+      {"tag": "saludos",
+      "patterns": ["hola", "hey", "buenas", "buenos días", "buenas tardes", "buenas noches", "buen día", "¿cómo te encuentras?", "¿cómo estas?"],
+      "responses": ["¡Hola! ¿Qué puedo hacer por ti?", "¡Hey! ¿Qué puedo hacer por ti?", "Buenas, tripulante, ¿qué puedo hacer por ti?"]
+      },
+      {"tag": "despedida",
+      "patterns": ["nos vemos", "me tengo que ir", "hasta la próxima", "me marcho", "ten un buen día", "bye", "hasta luego", "adios", "me despido"],
+      "responses": ["¡Un gusto haber conversado contigo!", "¡Nos vemos luego! :)", "¡Cuidate!"]
+      },
+      {"tag": "proposito",
+      "patterns": ["¿qué puedes hacer?", "¿qué sabes hacer?", "¿cuál es tu propósito?", "¿en qué me puedes ayudar?", "¿cuáles son tus capacidades?"],
+      "responses": [
+        "Soy un Agente Inteligente con la capacidad de administrar tickets dentro de Pivotal. Puedo brindarte la información que solicites relacionada a ellos o actualizar información que me pidas.", 
+        "Soy un Agente Inteligente diseñado para centralizar y administrar los tickets de Reservamos dentro de Pivotal. Puedo brindarte la información que necesites relacionada a ellos, y hasta actualizarlos."
+        ]
+      },
+      {"tag": "nombre",
+      "patterns": ["¿cómo te llamas?", "¿cuál es tu nombre?", "¿quién eres?", "¿tienes algún nombre?", "¿cómo debo llamarte?", "¿cómo puedo llamarte?"],
+      "responses": ["Pancho"]
+      },
+      {"tag": "etiqueta",
+      "patterns": ["¿puedes darme todos los tickets que tengan la siguiente etiqueta?", "¿cuales son los tickets con la etiqueta?", "¿que tickets tienen la etiqueta?"],
+      "responses": ["Los tickets con la etiqueta solicitada son los siguientes:"]
+      },
+      {"tag": "estado",
+      "patterns": ["¿puedes darme todos los tickets que tengan el siguiente estado?", "¿cuales son los tickets con el estado?", "¿que tickets tienen el estado?"],
+      "responses": ["Los tickets el estado solicitado son los siguientes:"]
+      },
+      {"tag": "actualización",
+      "patterns": ["¿puedes agregar la etiqueta al ticket?", "¿puedes actualizar el estado del ticket a?", "¿puedes cambiar el estado del ticket a?"],
+      "responses": ["Listo, el cambio ha sido realizado."]
+      }
+    ]
+  }
