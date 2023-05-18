@@ -44,7 +44,7 @@ def predict_class(sentence):
         return_list.append({'intent': classes[r[0]], 'probability': str(r[1])})  # Crear una lista de intenciones y sus probabilidades
     return return_list
 
-def get_response(intents_list, intents_json):
+def get_response(intents_list, intents_json, data):
     tag = intents_list[0]['intent']  # Obtener la etiqueta de la intención principal
     list_of_intents = intents_json['intents']
     for i in list_of_intents:
@@ -73,16 +73,16 @@ def extract_message_data(message):
         # Obtener los estados separados por comas
         estados = message[two_dots + 1:].strip().split(',')
         # Eliminar espacios en blanco alrededor de cada tag
-        estados = [estado.strip() for estado in tags]
+        estados = [estado.strip() for estado in estados]
         return ('estados', estados)
 
     # Si no se detecta ni una categoría ni un estado válido, retornar None
-    return None, None
+    return (None, None)
     
 
 while True:
     message = input("").lower()  # Leer el mensaje del usuario desde la entrada estándar
-    data = extract_message_data(message.strip())
+    data = extract_message_data(message)
     print(data)
     ints = predict_class(message)  # Predecir la intención del mensaje en minúsculas
     res = get_response(ints, intents, data)  # Obtener la respuesta correspondiente a la intención
