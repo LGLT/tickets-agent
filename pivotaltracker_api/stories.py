@@ -17,3 +17,13 @@ class StoryAPI:
         except requests.exceptions.RequestException as e:
             print("Request error:{}".format(e))
             return None
+    
+    def update_story(self, story_id, story_data):
+        try:
+            url = f'{self.base_url}stories/{story_id}'
+            response = requests.put(url, headers=self.headers, data=story_data)
+
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print("Request error:{}".format(e))
+            return None
