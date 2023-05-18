@@ -19,16 +19,43 @@
       "patterns": ["¿cómo te llamas?", "¿cuál es tu nombre?", "¿quién eres?", "¿tienes algún nombre?", "¿cómo debo llamarte?", "¿cómo puedo llamarte?"],
       "responses": ["Pancho"]
       },
-      {"tag": "etiqueta",
-      "patterns": ["¿puedes darme todos los tickets que tengan la siguiente etiqueta?", "¿cuales son los tickets con la etiqueta?", "¿que tickets tienen la etiqueta?"],
-      "responses": ["Los tickets con la etiqueta solicitada son los siguientes:"]
-      },
-      {"tag": "estado",
-      "patterns": ["¿puedes darme todos los tickets que tengan el siguiente estado?", "¿cuales son los tickets con el estado?", "¿que tickets tienen el estado?"],
-      "responses": ["Los tickets con el estado solicitado son los siguientes:"]
+      {"tag": "etiqueta_estado",
+      "patterns": [
+        "¿puedes darme todos los tickets que tengan la siguiente etiqueta?", 
+        "¿cuales son los tickets con la etiqueta?", 
+        "¿que tickets tienen la etiqueta?",
+        "¿puedes darme todos los tickets con la etiqueta: ?", 
+        "¿puedes darme todos los tickets con el tag: ?",
+        "¿puedes darme todos los tickets con la categoría: ?",
+        "¿puedes darme todos los tickets con el estado: ?",
+        "¿cuáles son los tickets con la etiqueta: ?", 
+        "¿cuáles son los tickets con el tag: ?",
+        "¿cuáles son los tickets con la categoría: ?",
+        "¿cuáles son los tickets con el estado: ?",
+        "¿que tickets tienen la etiqueta: ?", 
+        "¿que tickets tienen el tag: ?",
+        "¿que tickets tienen la categoría: ?",
+        "¿que tickets tienen el estado: ?"
+    ],
+      "responses": ["Los tickets con el requerimiento solicitado son los siguientes:"]
       },
       {"tag": "actualización",
-      "patterns": ["¿puedes agregar la etiqueta al ticket?", "¿puedes actualizar el estado del ticket a?", "¿puedes cambiar el estado del ticket a?"],
+      "patterns": [
+        "¿puedes agregar la etiqueta: al ticket?", 
+        "¿puedes agregar el tag: al ticket?",
+        "¿puedes agregar la categoría: al ticket?",
+        "¿puedes agregar el estado: al ticket?",
+        "¿puedes actualizar el estado del ticket a?", 
+        "¿puedes cambiar el estado del ticket a?", 
+        "modifica el ticket con la categoría:",
+        "modifica el ticket con el tag:",
+        "modifica el ticket con la etiqueta:",
+        "modifica el ticket con el estado:",
+        "agrega al ticket la categoría:",
+        "agrega al ticket el tag:",
+        "agrega al ticket la etiqueta:",
+        "cambia el ticket a estado:"
+    ],
       "responses": ["Listo, el cambio ha sido realizado."]
       }
     ]
