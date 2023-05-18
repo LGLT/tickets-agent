@@ -85,5 +85,5 @@ while True:
     data = extract_message_data(message.strip())
     print(data)
     ints = predict_class(message)  # Predecir la intención del mensaje en minúsculas
-    res = get_response(ints, intents)  # Obtener la respuesta correspondiente a la intención
+    res = get_response(ints, intents, data)  # Obtener la respuesta correspondiente a la intención
     print(res)  # Imprimir la respuesta
