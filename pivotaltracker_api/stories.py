@@ -29,7 +29,18 @@ class StoryAPI:
             return 
         except requests.exceptions.RequestException as e:
             print("Request error:{}".format(e))
-            return e
+            return None
     
     def parse_response(self, tickets):
         return [{'id':ticket['id'], 'name': ticket['name'], 'url': ticket['url'], 'labels': {label['name'] for label in ticket['labels']}} for ticket in tickets]
+    
+    def update_label(self, story_id, label_name):
+        try:
+            url = f'{self.base_url}stories/{story_id}/labels'
+            print(url)
+            response = requests.post(url, headers=self.headers, data={ "name": label_name })
+
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print("Request error:{}".format(e))
+            return None
