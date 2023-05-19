@@ -8,6 +8,8 @@ from nltk.stem import WordNetLemmatizer
 
 from tensorflow.keras.models import load_model
 
+from pivotaltracker_api.stories import StoryAPI
+
 lemmatizer = WordNetLemmatizer()
 
 # Cargar el archivo de intenciones en formato JSON
@@ -45,17 +47,51 @@ def predict_class(sentence):
     return return_list
 
 def get_response(intents_list, intents_json, data):
+    if data[0] == 'estados':
+        story_api = StoryAPI()  # Crear una instancia de la clase StoryAPI
+        api_response = story_api.get_all_stories(data[1])
+    elif data[0] == 'tags':
+        story_api = StoryAPI()  # Crear una instancia de la clase StoryAPI
+        api_response = story_api.get_all_stories(data[1])
+    elif len(data) == 2:
+        story_api = StoryAPI()  # Crear una instancia de la clase StoryAPI\
+        story_id = data[0][1]
+        story_state = data[1][1]
+        api_response = ''
+        story_api.update_story(story_id, story_state)
+        
     tag = intents_list[0]['intent']  # Obtener la etiqueta de la intención principal
     list_of_intents = intents_json['intents']
     for i in list_of_intents:
         if i['tag'] == tag:
             result = random.choice(i['responses'])  # Seleccionar una respuesta aleatoria de la intención correspondiente
             break
-    return result
+        
+    response_string = f"{result}\n"
+    response_string += '\n'.join(str(item) for item in api_response)
+    return response_string
 
-print("GO! Bot is running!")
+print("¡Bot listo para ayudar!")
 
-def extract_message_data(message):
+def extract_message_data(ints, message):
+    if ints[0]['intent'] == 'actualización':
+        id_index = message.find("id:")
+        ticket_index = message.find("ticket:")
+        estado_index = message.find("estado:")
+
+        # Función auxiliar para obtener el valor después de un substring
+        def extract_value(substring, start_index):
+            if start_index != -1:
+                value = message[start_index + len(substring):].split()[0]
+                return value
+            return None
+
+        # Obtener los valores de "id" y "estado"
+        id_value = extract_value("id:", id_index) or extract_value("ticket:", ticket_index)
+        estado_value = extract_value("estado:", estado_index)
+
+        return (('id', id_value), ('estado', estado_value))
+    
     # Verificar si se solicita una categoría
     if 'tag:' in message or 'tags:' in message or 'categoria:' in message or 'categorias:' in message or 'categoría:' in message or 'categorías:' in message or 'etiqueta:' in message or 'etiquetas:' in message:
         # Obtener el índice de los dos puntos
@@ -82,8 +118,9 @@ def extract_message_data(message):
 
 while True:
     message = input("").lower()  # Leer el mensaje del usuario desde la entrada estándar
-    data = extract_message_data(message)
-    print(data)
     ints = predict_class(message)  # Predecir la intención del mensaje en minúsculas
+    print(ints)
+    data = extract_message_data(ints, message)
+    print(data)
     res = get_response(ints, intents, data)  # Obtener la respuesta correspondiente a la intención
     print(res)  # Imprimir la respuesta
