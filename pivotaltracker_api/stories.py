@@ -37,9 +37,7 @@ class StoryAPI:
     def update_label(self, story_id, label_name):
         try:
             url = f'{self.base_url}stories/{story_id}/labels'
-            print(url)
             response = requests.post(url, headers=self.headers, data={ "name": label_name })
-
             return response.json()
         except requests.exceptions.RequestException as e:
             print("Request error:{}".format(e))

@@ -1,6 +1,5 @@
-random
-json
-pickle
 numpy
 nltk
 tensorflow
+python-dotenv
+unicode
